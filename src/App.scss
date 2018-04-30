@@ -1,0 +1,128 @@
+@import './game/styles/variables';
+
+//$game-width: 500px;
+//$game-height: 500px;
+
+@import './game/styles/core';
+
+
+.app-scene-listing-container{
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  padding: 20px;
+  background: rgba(#000, 0.8);
+  border-radius: 5px;
+  color: $green;
+  z-index: 500;
+}
+
+.settings-container{ 
+  position: absolute;
+  top: 80px;
+  right: 40px;
+  padding: 20px;
+  background: rgba(#000, 0.8);
+  border-radius: 5px;
+  color: $green;
+  z-index: 500;
+}
+
+.app-scene-listing-container,
+.settings-container{
+  ul{
+    list-style: none;
+    padding: 10px;
+  }
+  
+  ul li{
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  ul li:hover{
+    color: lighten($font-color, 30);
+  }
+  
+  ul li.current{
+    color: lighten($font-color, 30);
+    text-decoration: underline;
+  }
+
+  ul.bordered li{
+    border: 1px solid transparent;
+    border-radius: 5px;
+  }
+
+  ul.bordered li:hover{
+    border-color: lighten($font-color, 30);
+  }
+  
+  ul.bordered li.current{
+    border-color: $font-color;
+  }
+  
+  ul li:last-child{
+    margin-bottom: 0;
+  }
+  
+  div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  div:last-child{
+    margin-bottom: 0;
+  }
+  
+  div label{
+    margin-right: 20px;
+    flex: 2;
+    justify-self: flex-start;
+  }
+  
+  input{
+    background-color: transparent;
+    border: 1px solid $green;
+    color: $green;
+    padding: 10px;
+    border-radius: 5px;
+    align-self: flex-end;
+    outline: 0;
+    font-family: $font-family;
+    font-size: $font-size * 0.9 !important;
+    color: $font-color;
+  }
+  
+  > input[type=button]{
+    width: 100%;   
+    margin-top: 20px;
+    outline: 0;
+    cursor: pointer;
+  }
+  
+  input[type=button]:hover,
+  input:focus{
+    border-color: lighten($green, 30);
+    color: lighten($green, 30);
+  }
+} 
+
+.tile-selection-line{
+  display: flex;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.tile-selection-line div{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tile-selection-line div:hover,
+.tile-selection-line div.current{
+  border: 1px solid $green;
+}
