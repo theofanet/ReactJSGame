@@ -18,6 +18,10 @@ export default class Ball extends Entity{
         this.height = size;
     };
 
+	subjectCollisionReaction = (subject, side, penetration) => {
+
+	};
+
     draw = () => {
         return <div style={{
             backgroundColor: this.color,

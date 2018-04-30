@@ -8,6 +8,7 @@ import GravityBalls from "./scenes/balls";
 import TilesTest from "./scenes/tiles";
 
 import './App.scss';
+import {Sides} from "./game/physics/world";
 
 
 class App extends Component {
@@ -15,10 +16,10 @@ class App extends Component {
     super(props);
 
     this.scenes = [
-      {title: "Tiles Test", scene: <TilesTest />},
       {title: "Test Keyboard", scene: <TestScene />},
       {title: "Gravity Balls", scene: <GravityBalls />},
-      {title: "Sprites Test", scene: <SpritesTest />}
+      {title: "Sprites Test", scene: <SpritesTest />},
+		{title: "Tiles Test", scene: <TilesTest />}
     ];
 
     this.state = {

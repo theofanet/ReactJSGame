@@ -17,7 +17,7 @@ export default class Entity {
         this.grounded = true;
 
         this.impulses = [];
-        
+
         this.velocity = {x: 0, y: 0};
     }
 
@@ -45,15 +45,15 @@ export default class Entity {
                 a.y += i.y;
             }
             this.impulses = [];
-        
+
             // Applying acceleration to velocity
             this.velocity.x += a.x * dt;
             this.velocity.y += a.y * dt;
-    
+
             // Setting new positions
             this.x += this.velocity.x;
             this.y += this.velocity.y;
-            
+
             this.grounded = this.velocity.y === 0;
         }
     };
@@ -61,14 +61,14 @@ export default class Entity {
     drawBBox = () => {
         return <div className="entity-bbox" style={{
             position: 'absolute',
-            bottom: this.y, 
+            bottom: this.y,
             left: this.x,
-            width: this.width, 
+            width: this.width,
             height: this.height
         }}> </div>;
     };
 
-    subjectCollisionReaction = (subject, side, penetration) => {
+    subjectCollisionReaction = (subject, side, penetration, dt) => {
         if(side === Sides.TOP || side === Sides.BOTTOM)
             this.y += penetration.y;
         else if(side === Sides.LEFT || side === Sides.RIGHT)

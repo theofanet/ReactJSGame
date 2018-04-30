@@ -35,25 +35,24 @@ export default class World{
     update = dt => {
         for(let entity of this.entities)
             this.updateEntity(entity, dt);
-    }
+    };
 
     updateEntity = (entity, dt) => {
-        let old_position = Object.assign({}, {x: entity.x, y: entity.y});
         entity.update(this.configs, dt);
         if(entity.dynamic){
-            this.checkEntitiesCollision(entity, dt, old_position);
+            this.checkEntitiesCollision(entity, dt);
             this.checkWallCollision(entity);
             entity.grounded = entity.velocity.y === 0;
         }
     };
 
-    checkEntitiesCollision = (entity, dt, old_position) => {
+    checkEntitiesCollision = (entity, dt) => {
         for(let subject of this.entities){
             if(entity !== subject){
                 let penetration = this.checkEntityCollision(entity, subject);
                 if(penetration !== false){
                     let side = this.getCollisionSide(entity, subject);
-                    entity.subjectCollisionReaction(subject, side, penetration);
+                    entity.subjectCollisionReaction(subject, side, penetration, dt);
                 }
             }
         }
@@ -64,7 +63,7 @@ export default class World{
             || (subject.x + subject.width <= entity.x)
             || (subject.y >= entity.y + entity.height)
             || (subject.y + subject.height <= entity.y));
-        
+
         if(collide){
             let mx = 0;
             let my = 0;
@@ -83,7 +82,7 @@ export default class World{
                 y: my
             };
         }
-        
+
         return false;
     };
 
@@ -115,13 +114,13 @@ export default class World{
         let h = 0.5 * (entity.height + subject.height);
         let dx = entity.getCenter().x - subject.getCenter().x;
         let dy = entity.getCenter().y - subject.getCenter().y;
-    
+
         let wy = w * dy;
         let hx = h * dx;
-    
+
         if(Math.abs(dx) > w || Math.abs(dy) > h)
             return Sides.NONE;
-    
+
         if (wy > hx){
             if (wy > -hx)
                 return Sides.TOP;
