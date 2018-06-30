@@ -91,22 +91,28 @@ export default class World{
             entity.x = 0;
             entity.velocity.x *= -this.configs.absorption * entity.bounce_scale;
             entity.velocity.y *= this.configs.absorption * entity.bounce_scale;
+            return true;
         }
-        else if(entity.x > this.configs.width - entity.size){
+        else if(entity.x > this.configs.width - entity.width){
             entity.x = this.configs.width - entity.size;
             entity.velocity.x *= -this.configs.absorption * entity.bounce_scale;
             entity.velocity.y *= this.configs.absorption * entity.bounce_scale;
+            return true;
         }
         if(entity.y < 0){
             entity.y = 0;
             entity.velocity.y *= -this.configs.absorption * entity.bounce_scale;
             entity.velocity.x *= this.configs.absorption * entity.bounce_scale;
+            return true;
         }
-        else if(entity.y > this.configs.height - entity.size){
+        else if(entity.y > this.configs.height - entity.height){
             entity.y = this.configs.height - entity.size;
             entity.velocity.y *= -this.configs.absorption * entity.bounce_scale;
             entity.velocity.x *= this.configs.absorption * entity.bounce_scale;
+            return true;
         }
+
+        return false;
     };
 
     getCollisionSide = (entity, subject) => {

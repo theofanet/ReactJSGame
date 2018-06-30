@@ -28,6 +28,10 @@ export default class Entity {
         });
     };
 
+    setVelocity = (x, y) => {
+        this.velocity = {x: x, y: y};
+    };
+
     getCenter = () => {
         return {x: this.x + (this.width / 2), y: this.y + (this.height / 2)};
     };
@@ -66,6 +70,10 @@ export default class Entity {
             width: this.width,
             height: this.height
         }}> </div>;
+    };
+
+    isMoving = () => {
+        return this.velocity.x || this.velocity.y;
     };
 
     subjectCollisionReaction = (subject, side, penetration, dt) => {
